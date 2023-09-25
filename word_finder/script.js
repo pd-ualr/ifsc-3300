@@ -1,0 +1,1 @@
+const name = "Grace Hopper";const nameUpper = name.toUpperCase();const nameLength = name.length; // nameLength = 12const index = name.indexOf(" "); // index = 5const firstName = name.substr(0, index);
