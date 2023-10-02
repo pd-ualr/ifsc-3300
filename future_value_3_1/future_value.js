@@ -39,5 +39,3 @@ for (let i = 1; i <= years; i++ ) {
 //ask user to repeat
 repeat = prompt("Do you want to add more? (yes/no)","yes");
 }while(repeat == "yes");
-
-Suppose that a JavaScript application on the Internet consists of an HTML file, a CSS file, and a JavaScript file. To run the application, you can
