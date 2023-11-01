@@ -1,42 +1,43 @@
 "use strict";
 
 const $ = selector => document.querySelector(selector);
-    
-const imageCache = [];
-let imageCounter = 0;
+
+const img_cache = [];
+let img_counter = 0;
 let timer = null;
 let image = null;
 
-const mainImage = $("#main_image");   // the img element for the show
-const caption = $("#caption");        // the h2 element for the caption
-
-const runSlideShow = function() {
-    imageCounter = (imageCounter + 1) % imageCache.length;
-    image = imageCache[imageCounter];
-    mainImage.src = image.src;
-    mainImage.alt = image.alt;
+const main_img = $("#main_image");
+const caption = $("#caption");
+    img_counter = (img_counter + 1) % img_cache.length;
+    image = img_cache[img_counter];
+    main_img.src = image.src;
+    main_img.alt = image.alt;
     caption.textContent = image.alt;
-};
+;
          
 document.addEventListener("DOMContentLoaded", () => {
     const links = $("#image_list").querySelectorAll("a");
-    
-    // process image links
     for ( let link of links ) {
-        // Preload image and copy title properties
         image = new Image();
         image.src = link.href;
         image.alt = link.title;
 
-        // add image to array 
-        imageCache[imageCache.length] = image;
+        img_cache[img_cache.length] = image;
     }
 
-    // attach start and pause event handlers
     $("#start").addEventListener("click", () => {
+        $("#start").disabled = true;
+        $("#pause").disabled = false;
 
+         runSlideShow();
+         timer = setInterval(runSlideShow, 2000);
     });
-    $("#pause").addEventListener("click", () => {
 
+    $("#pause").addEventListener("click", () => {
+        $("#start").disabled = false;
+        $("#pause").disabled = true;
+
+        clearInterval(timer);
     });
 });
