@@ -21,7 +21,7 @@ $(document).ready( () => {
         let isValid = true;
         
         // validate the email entry with a regular expression
-        const emailPattern = /\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}\b/;
+        const emailPattern = /^[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,}$/;
         const email = $("#email").val().trim();
         if (email == "") { 
             $("#email").next().text("This field is required.");
@@ -36,14 +36,10 @@ $(document).ready( () => {
             
         // validate the password entry
         const password = $("#password").val().trim();
-        const passwordPattern = /\b[A-Za-z0-9.!@#$^&*()_%+-]\b/;
         if ( password.length < 6) {
             $("#password").next().text("Must be 6 or more characters.");
             isValid = false;
-        } else if (!passwordPattern.test(password)) {
-            $("#password").next().text("Needs to have a special character.");
-            
-        } else {}
+        } else {
             $("#password").next().text("");
         }
         $("#password").val(password);
